@@ -22,4 +22,10 @@ float remap(float val, float2 inMinMax, float2 outMinMax)
     return clamp(outMinMax.x + (val - inMinMax.x) * (outMinMax.y - outMinMax.x) / (inMinMax.y - inMinMax.x), outMinMax.x, outMinMax.y);
 }
 
+// 回転
+float2x2 rot(float a)
+{
+    return float2x2(cos(a), sin(a), -sin(a), cos(a));
+}
+
 #endif
