@@ -28,4 +28,10 @@ float2x2 rot(float a)
     return float2x2(cos(a), sin(a), -sin(a), cos(a));
 }
 
+// カメラの前方向のベクトルを取得
+float3 getCameraForwardDir()
+{
+    return normalize(-UNITY_MATRIX_V[2].xyz);
+}
+
 #endif
