@@ -43,4 +43,16 @@ float2 polar(float2 uv, float2 center = float2(0.0, 0.0), float radialScale = 1.
     return float2(radius, angle);
 }
 
+// 繰り返す
+float2 repeat(float2 p, float n)
+{
+    return abs(fmod(p, n)) - n * 0.5;
+}
+
+// 繰り返す
+float3 repeat(float3 p, float n)
+{
+    return abs(fmod(p, n)) - n * 0.5;
+}
+
 #endif
