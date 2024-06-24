@@ -1,6 +1,23 @@
 #ifndef MATH_FUNCTION
 #define MATH_FUNCTION
 
+// カメラの前方向のベクトルを取得
+float3 getCameraForwardDir()
+{
+    return normalize(-UNITY_MATRIX_V[2].xyz);
+}
+
+// オブジェクトのスケールを取得
+float3 getObjectScale()
+{
+    float3 scale = float3(
+                            length(float3(unity_ObjectToWorld[0].x , unity_ObjectToWorld[1].x , unity_ObjectToWorld[2].x)),
+	                        length(float3(unity_ObjectToWorld[0].y , unity_ObjectToWorld[1].y , unity_ObjectToWorld[2].y)),
+	                        length(float3(unity_ObjectToWorld[0].z , unity_ObjectToWorld[1].z , unity_ObjectToWorld[2].z))
+                        );
+    return scale;
+}
+
 // lerpの逆関数
 // aとbの値が等しい場合、0で割り算が発生する可能性がある
 float inverseLerp(float a, float b, float t)
@@ -26,12 +43,6 @@ float remap(float val, float2 inMinMax, float2 outMinMax)
 float2x2 rot(float a)
 {
     return float2x2(cos(a), sin(a), -sin(a), cos(a));
-}
-
-// カメラの前方向のベクトルを取得
-float3 getCameraForwardDir()
-{
-    return normalize(-UNITY_MATRIX_V[2].xyz);
 }
 
 // 極座標
