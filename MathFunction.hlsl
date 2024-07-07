@@ -46,7 +46,7 @@ float2x2 rot(float a)
 }
 
 // 極座標
-float2 polar(float2 uv, float2 center = float2(0.0, 0.0), float radialScale = 1.0, float lengthScale = 0.0)
+float2 polar(float2 uv, float2 center = float2(0.0, 0.0), float radialScale = 1.0, float lengthScale = 1.0)
 {
     float2 delta = uv - center;
     float radius = length(delta) * 2.0 * radialScale;
