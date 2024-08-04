@@ -68,7 +68,7 @@ float3 repeat(float3 p, float n)
 
 // 量子化する
 // valueをstepの数で分割する
-float Quantize(float value, float step)
+float quantize(float value, float step)
 {
     step = max(step, 0.0001);
     return floor(value * step) / step;
@@ -76,7 +76,7 @@ float Quantize(float value, float step)
 
 // UV座標をピクセル化する
 // stepは分割数
-float2 Pixelate(float2 uv, float step)
+float2 pixelate(float2 uv, float step)
 {
     uv.x = Quantize(uv.x, step);
     uv.y = Quantize(uv.y, step);
