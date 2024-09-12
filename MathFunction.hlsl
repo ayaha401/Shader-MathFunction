@@ -84,4 +84,16 @@ float2 pixelate(float2 uv, float step)
     return uv;
 }
 
+// sinを使用した0~1までを繰り返すTime
+float sinTime()
+{
+    return abs(sin(_Time.y));
+}
+
+// cosを使用した0~1までを繰り返すTime
+float cosTime()
+{
+    return abs(cos(_Time.y));
+}
+
 #endif
