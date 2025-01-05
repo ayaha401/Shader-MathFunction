@@ -96,4 +96,16 @@ float cosTime()
     return abs(cos(_Time.y));
 }
 
+//===================================//
+// ミンコフスキー距離を計算する        //
+// m =  1        : manhattanDistance //
+// m =  2        : euclideanDistance //
+// m =  infinity : chebyshevDistance //
+//===================================//
+float minkowskiDistance(float2 uv, float m)
+{
+    float2 d1=pow(abs(float2(uv.x, uv.y)),(float2)m);
+    return pow((d1.x+d1.y),1.0 / m);
+}
+
 #endif
