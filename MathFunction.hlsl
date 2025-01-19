@@ -78,8 +78,8 @@ float quantize(float value, float step)
 // stepは分割数
 float2 pixelate(float2 uv, float step)
 {
-    uv.x = Quantize(uv.x, step);
-    uv.y = Quantize(uv.y, step);
+    uv.x = quantize(uv.x, step);
+    uv.y = quantize(uv.y, step);
 
     return uv;
 }
