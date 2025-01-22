@@ -108,4 +108,22 @@ float minkowskiDistance(float2 uv, float m)
     return pow((d1.x+d1.y),1.0 / m);
 }
 
+// ディザ抜きに必要な4x4の閾値
+// https://docs.unity3d.com/ja/Packages/com.unity.shadergraph@10.0/manual/Dither-Node.html
+static const float DITHER_THRESHOLDS[16] =
+{
+    1.0 / 17.0,  9.0 / 17.0,  3.0 / 17.0, 11.0 / 17.0,
+    13.0 / 17.0,  5.0 / 17.0, 15.0 / 17.0,  7.0 / 17.0,
+    4.0 / 17.0, 12.0 / 17.0,  2.0 / 17.0, 10.0 / 17.0,
+    16.0 / 17.0,  8.0 / 17.0, 14.0 / 17.0,  6.0 / 17.0
+};
+
+// https://docs.unity3d.com/ja/Packages/com.unity.shadergraph@10.0/manual/Dither-Node.html
+float dither(float value, float2 screenPosition)
+{
+    float2 uv = screenPosition.xy * _ScreenParams.xy;
+    uint index = (uint(uv.x) % 4) * 4 + uint(uv.y) % 4;
+    return value - DITHER_THRESHOLDS[index];
+}
+
 #endif
