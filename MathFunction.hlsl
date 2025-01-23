@@ -119,6 +119,8 @@ static const float DITHER_THRESHOLDS[16] =
 };
 
 // https://docs.unity3d.com/ja/Packages/com.unity.shadergraph@10.0/manual/Dither-Node.html
+// value : Ditherの強度
+// screenPosition : screenPosition
 float dither(float value, float2 screenPosition)
 {
     float2 uv = screenPosition.xy * _ScreenParams.xy;
