@@ -18,6 +18,12 @@ float3 getObjectScale()
     return scale;
 }
 
+// オブジェクトのポジションを取得
+float3 getObjecttWorldPosition()
+{
+    return transpose(UNITY_MATRIX_M)[3].xyz;
+}
+
 // lerpの逆関数
 // aとbの値が等しい場合、0で割り算が発生する可能性がある
 float inverseLerp(float a, float b, float t)
@@ -126,6 +132,16 @@ float dither(float value, float2 screenPosition)
     float2 uv = screenPosition.xy * _ScreenParams.xy;
     uint index = (uint(uv.x) % 4) * 4 + uint(uv.y) % 4;
     return value - DITHER_THRESHOLDS[index];
+}
+
+// 法線を合成する
+// https://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/Normal-Blend-Node.html
+float3 blend_RNM(float3 n1, float3 n2)
+{
+    float3 t = n1 + float3(0, 0, 1);
+    float3 u = n2 * float3(-1, -1, 1);
+    float3 r = normalize(t * dot(t, u) - u * t.z);
+    return r;
 }
 
 #endif
