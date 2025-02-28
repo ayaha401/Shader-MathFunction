@@ -72,6 +72,15 @@ float3 repeat(float3 p, float n)
     return abs(fmod(p, n)) - n * 0.5;
 }
 
+// -1～1の曲線を返す
+// GLSLのtanh
+// x * nで曲線のsmoothnessを変更できる。n>1で急に、n<1でリニアになる
+float tanh(float x)
+{
+    float exp2x = exp(2.0 * x);
+    return (exp2x - 1.0) / (exp2x + 1.0);
+}
+
 // 量子化する
 // valueをstepの数で分割する
 float quantize(float value, float step)
