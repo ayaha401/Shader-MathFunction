@@ -1,6 +1,9 @@
 #ifndef MATH_FUNCTION
 #define MATH_FUNCTION
 
+// aからbの間の値のtを0~1にマッピングする
+#define linearStep(a, b, t) saturate(((t)-(a))/((b)-(a)))
+
 // カメラの前方向のベクトルを取得
 float3 getCameraForwardDir()
 {
