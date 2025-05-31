@@ -84,6 +84,14 @@ float tanh(float x)
     return (exp2x - 1.0) / (exp2x + 1.0);
 }
 
+// -1～1の曲線を返す
+// GLSLではtanhより速い(たぶん)(https://x.com/XorDev/status/1928598796188955019)
+// HLSLではexp使ったtanhがあるのでこれを使用したほうが早いかは不明
+float fastTanh(float x)
+{
+    return x * rsqrt(1.0 + x * x);
+}
+
 // 量子化する
 // valueをstepの数で分割する
 float quantize(float value, float step)
