@@ -27,6 +27,13 @@ float3 getObjecttWorldPosition()
     return transpose(UNITY_MATRIX_M)[3].xyz;
 }
 
+// positionOSをワールド空間に変換する
+// UnityのSpaceTransforms.TransformObjectToWorldと同じ
+float3 getWorldPos(float3 positionOS)
+{
+    return mul(GetObjectToWorldMatrix(), float4(positionOS, 1.0)).xyz;
+}
+
 // lerpの逆関数
 // aとbの値が等しい場合、0で割り算が発生する可能性がある
 float inverseLerp(float a, float b, float t)
